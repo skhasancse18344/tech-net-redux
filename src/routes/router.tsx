@@ -1,15 +1,20 @@
 import { createBrowserRouter } from "react-router";
-import Home from "../pages/Home";
-import Login from "../pages/login";
+import NotFound from "../pages/NotFound";
+import App from "../App";
+import Login from "../pages/Login";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Home />,
+    element: <App />,
   },
   {
     path: "/login",
     element: <Login />,
+  },
+  {
+    path: "*",
+    element: <NotFound />,
   },
 ]);
 
