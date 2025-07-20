@@ -1,16 +1,22 @@
-import { useDispatch, useSelector } from "react-redux";
+import {
+  decrement,
+  increment,
+  incrementByAmount,
+} from "./redux/features/counter/counterSlice";
 
-import { decrement, increment } from "./redux/features/counter/counterSlice";
-import type { RootState } from "./redux/store";
+import { useAppDispatch, useAppSelector } from "./redux/hooks";
 
 function App() {
-  const count = useSelector((state: RootState) => state.counter.value);
-  const dispatch = useDispatch();
+  const count = useAppSelector((state) => state.counter.value);
+  const dispatch = useAppDispatch();
   const handleIncrement = () => {
     dispatch(increment());
   };
   const handleDecrement = () => {
     dispatch(decrement());
+  };
+  const handleIncrementByAmount = (payload: number) => {
+    dispatch(incrementByAmount(payload));
   };
   return (
     <>
@@ -31,6 +37,12 @@ function App() {
             onClick={handleDecrement}
           >
             decrement
+          </button>
+          <button
+            className="bg-green-500 text-white px-4 py-2 rounded ml-2 mt-4"
+            onClick={() => handleIncrementByAmount(5)}
+          >
+            Increment by 5
           </button>
         </div>
       </div>
